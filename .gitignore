@@ -1,0 +1,37 @@
+# ================= 构建产物 =================
+x64/
+Debug/
+Release/
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.ilk
+*.obj
+*.exe
+*.exp
+*.log
+*.tlog
+*.iobj
+*.ipdb
+
+# ================= Visual Studio 缓存 / 个人设置 =================
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+ipch/
+*.sln.docstates
+
+# ================= 字体：微软雅黑是微软专有字体，禁止分发 =================
+*.ttc
+*.ttf
+*.otf
+msyh*
+simhei*
+simsun*
+
+# ================= 临时 / 验证文件 =================
+*.bmp
+*.png
+*.zip

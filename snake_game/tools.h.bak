@@ -1,0 +1,17 @@
+﻿#pragma once
+#include <SDL3/SDL.h>
+#include<SDL3_ttf/SDL_ttf.h>
+#include<string>
+#include<array>
+#define X_ChangeSize 20
+#define Y_ChangeSize 30
+using namespace std;
+extern SDL_Renderer* renderer;
+extern SDL_Window* window;
+void InitGame();
+void CreateWindowAndRender();
+void RenderClear();
+void RenderPresent();
+float ToPixel_x(int x);
+float ToPixel_y(int y);
+void RenderText( TTF_Font* font, const string& Title, SDL_Renderer* render,int y,const array<int ,4>color);

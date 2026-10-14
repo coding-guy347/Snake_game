@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SDL3_ttf 3.2.2 属性表 —— 由 DSH 生成
+  SDL3_ttf 库放在本工程目录下的 SDL3_ttf\，字体 msyh.ttc（微软雅黑）也在工程目录。
+  被 snake_game.vcxproj 用一行 <Import> 引入；这样 Visual Studio 重写 vcxproj 时也不会把配置弄丢。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SDL3_ttf">
+    <SDL3TtfDir Condition="'$(SDL3TtfDir)'==''">$(ProjectDir)SDL3_ttf</SDL3TtfDir>
+    <SDL3TtfLibDir Condition="'$(Platform)'=='Win32'">$(SDL3TtfDir)\lib\x86</SDL3TtfLibDir>
+    <SDL3TtfLibDir Condition="'$(SDL3TtfLibDir)'==''">$(SDL3TtfDir)\lib\x64</SDL3TtfLibDir>
+    <SDL3TtfDllDir Condition="'$(Platform)'=='Win32'">$(SDL3TtfDir)\lib\x86</SDL3TtfDllDir>
+    <SDL3TtfDllDir Condition="'$(SDL3TtfDllDir)'==''">$(SDL3TtfDir)\lib\x64</SDL3TtfDllDir>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <!-- 让 #include <SDL3_ttf/SDL_ttf.h> 能找到 -->
+      <AdditionalIncludeDirectories>$(SDL3TtfDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SDL3TtfLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <!-- 编译后把 SDL3_ttf.dll 复制到 exe 旁边 -->
+  <Target Name="CopySDL3TtfDll" AfterTargets="Build"
+          Condition="'$(ConfigurationType)'=='Application' and Exists('$(SDL3TtfDllDir)\SDL3_ttf.dll')">
+    <Copy SourceFiles="$(SDL3TtfDllDir)\SDL3_ttf.dll" DestinationFolder="$(OutDir)"
+          SkipUnchangedFiles="true" ContinueOnError="true" />
+  </Target>
+</Project>
