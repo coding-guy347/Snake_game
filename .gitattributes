@@ -1,0 +1,9 @@
+# ================= GitHub 语言统计 =================
+# 第三方 SDK（SDL3 / SDL3_ttf）不计入本仓库的语言统计。
+# 不加这两行的话，88 个 SDL 官方 C 头文件（约 7.9 万行）会被算成"你的"代码，
+# 语言条会显示成 C 93% / C++ 6%，而实际上那些是 vendored 的库代码。
+snake_game/SDL3/**      linguist-vendored
+snake_game/SDL3_ttf/**  linguist-vendored
+
+# 本项目自己的头文件按 C++ 统计（.h 默认可能被判定成 C）
+snake_game/*.h          linguist-language=C++
