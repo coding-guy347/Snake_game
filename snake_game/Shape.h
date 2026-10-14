@@ -6,23 +6,24 @@
 #include<memory>
 #define PI 3.1415926
 using namespace std;
-class Shape
+class Shape//父类shape
 {
 protected:
-	array<float, 3>color;
-	inline static vector<unique_ptr<Shape>>prototypes;
+	array<float, 3>color;//浮点颜色数组(都是0~1的浮点值)
+	inline static vector<unique_ptr<Shape>>prototypes;//定义静态原型模式
 	int x, y;
 public:
-	void SetPosition(int newX, int newY) {
+	void SetPosition(int newX, int newY)//建立新格子坐标 
+	{
 		x = newX;
 		y = newY;
 	}
-	void SetColor(const array<float, 3>& newColor)
+	void SetColor(const array<float, 3>& newColor)//建立新颜色
 	{
 		color = newColor;
 	}
-	static int  GetPrototypeCount()  { return prototypes.size(); }
-	Shape(int x=0,int y=0,const array<float,3>color={0.3f,0.4f,0.3f}) :x(x), y(y), color(color) {}
+	static int  GetPrototypeCount()  { return prototypes.size(); }//获取当前原型数量
+	Shape(int x=0,int y=0,const array<float,3>color={0.3f,0.4f,0.3f}) :x(x), y(y), color(color) {}//初始化shape类
 	virtual void Print() {};
 	virtual ~Shape()=default;
 	virtual unique_ptr<Shape> clone() { return nullptr; }
@@ -32,7 +33,8 @@ public:
 	{
 		prototypes.push_back(move(shape));
 	}
-	static unique_ptr<Shape>FindAndClone(int index) {
+	static unique_ptr<Shape>FindAndClone(int index) //找到需要建立的shape类并且克隆
+	{
 		if (index < 0 || index >= (int)prototypes.size()) return nullptr;
 		return prototypes[index]->clone();
 	}
@@ -43,7 +45,7 @@ private:
 public:
 	Point(int x, int y) :Shape(x, y) {};
 	void Print();
-	unique_ptr<Shape>clone() override {
+	unique_ptr<Shape>clone() override {//重载当前子类的clone函数
 		return make_unique<Point>(*this);
 	}
 };

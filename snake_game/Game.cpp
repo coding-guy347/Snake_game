@@ -67,7 +67,7 @@ void Game::HandleInput()
 
 void Game::Update()
 {
-    bool ate=false;
+    bool ate=false;//开始设置没有迟到食物
     if (SDL_GetTicks() - LastMoveTime >= 150)
     {
         vector<int>point = snake.NextHeadPosition();
@@ -75,10 +75,10 @@ void Game::Update()
         {
             ate = true;
         }
-        snake.SetAtefood(ate);
+        snake.SetAtefood(ate);//将ate传给snake
         snake.move();
         LastMoveTime = SDL_GetTicks();
-        if (ate) food.Respawn();
+        if (ate) food.Respawn();//如果吃到食物，更新food
     }
 }
 

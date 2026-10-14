@@ -17,7 +17,7 @@ void Snake::Print()
 
 void Snake::move()
 {
-	int x, y;
+	int x, y;//先获取新头坐标
 	switch(direction)
 	{
 	case Snake::UP:
@@ -50,12 +50,12 @@ void Snake::move()
 		dead = true;
 		return;
 	}
-	if (!Isdead()&&!atefood)
+	if (!Isdead()&&!atefood)//如果没有吃到食物就不pop尾巴
 	{
 		snake.push_front(Point(x, y));
 		snake.pop_back();
 	}
-	else if(!Isdead()&&atefood)
+	else if(!Isdead()&&atefood)//吃到食物不需要pop尾巴
 	{
 		snake.push_front(Point(x, y));
 	}
@@ -101,7 +101,7 @@ bool Snake::IsHitSelf(int x, int y)
 	return false;
 }
 
-vector<int>Snake::NextHeadPosition()
+vector<int>Snake::NextHeadPosition()//获取下一个头部坐标
 {
 	int x, y;
 	switch (direction)

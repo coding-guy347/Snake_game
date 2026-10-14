@@ -1,4 +1,4 @@
-#include"Shape.h"
+﻿#include"Shape.h"
 void Point::Print(){}
 
 void Retangle::Print()
@@ -10,6 +10,7 @@ void Retangle::Print()
 
 void Triangle::Print()
 {
+	//根据三角形中心格子坐标获取三角形三个顶点的坐标
 	float apex_x = (float)(this->x* X_ChangeSize);
 	float apex_y = (float)(this->y * Y_ChangeSize-Y_ChangeSize);
 	float left_x = (float)(this->x * X_ChangeSize-X_ChangeSize);
@@ -23,15 +24,16 @@ void Triangle::Print()
 		
 		{.position = { right_x, right_y }, .color = { this->color[0], this->color[1], this->color[2],1}}
 	};
-	SDL_RenderGeometry(renderer, NULL, vertices, 3, NULL, 0);
+	SDL_RenderGeometry(renderer, NULL, vertices, 3, NULL, 0);//传入顶点和颜色进行填充渲染
 }
 
 void Cycle::Print()
 {
-	float r = X_ChangeSize;
-	float CenterPoint_x = (float)(this->Get_x() * X_ChangeSize);
+	float r = X_ChangeSize;//半径
+	float CenterPoint_x = (float)(this->Get_x() * X_ChangeSize);//获取圆心
 	float CenterPoint_y = (float)(this->Get_y() * Y_ChangeSize);
 	vector<Point>points;
+	//采样360个小三角形模拟圆形
 	for (int i =0;i <= 360;i++)
 	{
 		Point point((int)(CenterPoint_x +r* cos(i*PI/180)),(int)(CenterPoint_y-r*sin(i*PI/180)));
@@ -56,7 +58,4 @@ void Cycle::Print()
 	}
 }
 
-void FivePointStar::Print()
-{
-}
 
