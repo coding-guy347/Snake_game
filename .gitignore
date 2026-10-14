@@ -1,7 +1,11 @@
 # ================= 构建产物 =================
-x64/
-Debug/
-Release/
+# 注意：必须锚定到工程目录，否则会误伤 snake_game/SDL3/lib/x64（那是要提交的库）
+/snake_game/x64/
+/snake_game/Debug/
+/snake_game/Release/
+/x64/
+/Debug/
+/Release/
 [Bb]in/
 [Oo]bj/
 *.pdb
@@ -33,5 +37,5 @@ simsun*
 
 # ================= 临时 / 验证文件 =================
 *.bmp
-*.png
 *.zip
+*.bak
